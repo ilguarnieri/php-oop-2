@@ -64,11 +64,14 @@ $product1 = new Product(
     'https://m.media-amazon.com/images/I/81oo7MhcjIL._AC_SY355_.jpg',
     64537,
     'Questa borsa portatile per animali domestici è realizzata in poliestere resistente.',
-    35.60
+    35.60,
+    '01',
+    '12'
 );
 $product1->addAnimal('gatti');
 $product1->addCategory('trasportino');
 $product1->addCategory('cucce');
+
 
 // PRODOTTO 2
 $product2 = new Product(
@@ -76,10 +79,13 @@ $product2 = new Product(
     'https://arcaplanet.vtexassets.com/arquivos/ids/243809-1200-auto?v=637455010535500000&width=1200&height=auto&aspect=true',
     98736,
     'Alimento secco completo per cani adulti di grande taglia.',
-    25.99
+    25.99,
+    '01',
+    '12'
 );
 $product2->addAnimal('cani');
 $product2->addCategory('alimentazione');
+
 
 // PRODOTTO 3
 $product3 = new Product(
@@ -87,10 +93,33 @@ $product3 = new Product(
     'https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-it-master-catalog/default/dw039ccf4c/idt/143033.png?sw=800&sh=800',
     28374,
     'Alimento umido per gatti altamente digeribile.',
-    1.60
+    1.60,
+    '01',
+    '12'
 );
 $product3->addAnimal('gatti');
 $product3->addCategory('alimentazione');
+
+
+// PRODOTTO 4
+$product4 = new Product(
+    'Frontline Spray 250 ml, Antiparassitario',
+    'https://m.media-amazon.com/images/I/41J94o3rryS._AC_.jpg',
+    40059,
+    'Palla per cani intrecciata, colorata e divertente.',
+    23.99,
+    '01',
+    '08'
+);
+$product4->addAnimal('cani');
+$product4->addAnimal('gatti');
+$product4->addCategory('salute');
+
+try{
+    $product4->getAvailableStart('05');
+} catch (Exception $error){
+    echo "ATTENZIONE".$error->getMessage();
+}
 
 
 
@@ -98,6 +127,7 @@ $product3->addCategory('alimentazione');
 
 
 $cart->addItem($product2, 5);
+$cart->addItem($product4);
 $cart->addItem($product3, 10);
 $cart->addItem($product1);
 
@@ -108,6 +138,8 @@ var_dump($guest);
 var_dump($user);
 
 var_dump($cart);
+
+
 
 ?>
 

@@ -106,7 +106,7 @@ $product4 = new Product(
     'Frontline Spray 250 ml, Antiparassitario',
     'https://m.media-amazon.com/images/I/41J94o3rryS._AC_.jpg',
     40059,
-    'Palla per cani intrecciata, colorata e divertente.',
+    'Trattamento antiparassitario contro pulci, zecche e pidocchi.',
     23.99,
     '01',
     '08'
@@ -116,19 +116,17 @@ $product4->addAnimal('gatti');
 $product4->addCategory('salute');
 
 try{
-    $product4->getAvailableStart('05');
+    $product4->setAvailableStart('05');
 } catch (Exception $error){
     echo "ATTENZIONE".$error->getMessage();
 }
 
 
 
-
-
-
 $cart->addItem($product2, 5);
 $cart->addItem($product4);
-$cart->addItem($product3, 10);
+$cart->addItem($product3, 5);
+$cart->addItem($product3, 8);
 $cart->addItem($product1);
 
 $cart->removeItem($product3, 3);
@@ -136,8 +134,6 @@ $cart->removeItem($product3, 3);
 
 var_dump($guest);
 var_dump($user);
-
-var_dump($cart);
 
 
 
@@ -170,7 +166,6 @@ var_dump($cart);
             <?php
             echo $product['item']->price;
             ?>€
-
         </li>
         <?php
         }
@@ -180,6 +175,26 @@ var_dump($cart);
     <p>Numero articoli: <?= $cart->total_items ?></p>
 
     <p>Totale carrello: <?= $cart->total_price ?>€</p>
+
+    <ul>
+        <h3>Articoli non disponibili:</h3>
+        <?php
+        foreach($cart->items_notAvailable as $product){
+        ?>
+        <li>
+            <b><?php
+            echo $product->name;
+            ?></b><br>
+            <b>NON DISPONIBILE</b><br>
+            <s>Prezzo: 
+            <?php
+            echo $product->price;
+            ?>€</s>
+        </li>
+        <?php
+        }
+        ?>
+    </ul>
     
 </body>
 </html>

@@ -38,12 +38,12 @@ class Product {
     }
 
     //X LEGGERE IL MESE DI INIZIO DISPONIBILIÀ
-    public function setAvailableStart(){
+    public function getAvailableStart(){
         return $this->availableStart;
     }
 
     //X MODIFICARE IL MESE DI INIZIO DISPONIBILITÀ
-    public function getAvailableStart($_availableMonth){
+    public function setAvailableStart($_availableMonth){
         if(is_numeric($_availableMonth) && $_availableMonth > 0 && $_availableMonth <= 12){
             $this->availableStart = $_availableMonth;
         } else {
@@ -52,12 +52,12 @@ class Product {
     }
 
     //X LEGGERE IL MESE DI FINE DISPONIBILIÀ
-    public function setAvailableEnd(){
-        return $this->availableStart;
+    public function getAvailableEnd(){
+        return $this->availableEnd;
     }
 
     //X MODIFICARE IL MESE DI FINE DISPONIBILITÀ
-    public function getAvailableEnd($_availableMonth){
+    public function setAvailableEnd($_availableMonth){
         if(is_numeric($_availableMonth) && $_availableMonth > 0 && $_availableMonth <= 12){
             $this->availableEnd = $_availableMonth;
         } else {

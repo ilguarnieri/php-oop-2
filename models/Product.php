@@ -30,4 +30,5 @@ class Product {
             $this->categories[] = strtolower($_category);
         }
     }
+
 }

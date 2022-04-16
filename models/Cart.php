@@ -60,14 +60,14 @@ class Cart {
     
                     $quantity = $this->items_list[$key]['quantity'];
                 }
+
+                //riduco quantità del singolo prodotto
+                $this->items_list[$key]['quantity'] -= $quantity;
                 
                 //se presente un solo prodotto verrà eliminato altrimenti sarà decrementata solo la quantità
-                if($value['quantity'] === 1){
+                if($this->items_list[$key]['quantity'] < 1){
                     
                     unset($this->items_list[$key]);
-                }else{
-
-                    $this->items_list[$key]['quantity'] -= $quantity;
                 }
 
                 //ricalcolo dei totali

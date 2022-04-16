@@ -2,8 +2,11 @@
 
 require_once __DIR__.'/models/Product.php';
 require_once __DIR__.'/models/Cart.php';
+require_once __DIR__.'/models/User.php';
 
 $cart = new Cart();
+
+$guest = new User('Marco', 'Rossi', 26, 'marcorossi@gmail.com', 'Via Dante30, Milano');
 
 
 $product1 = new Product(
@@ -32,27 +35,33 @@ $product2->addCategory('alimentazione');
 
 
 
+
+
+
+
+
 $cart->addItem($product2);
-$cart->addItem($product2,3);
 
 $cart->addItem($product1, 4);
 
 
 
 
-$cart->removeItem($product1, 6);
-
-
-
-
-
-
-
-
-
+$cart->removeItem($product1, 3);
 
 
 var_dump($cart);
+
+
+var_dump($guest);
+
+
+
+
+
+
+
+
 
 
 ?>
@@ -63,9 +72,33 @@ var_dump($cart);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>e-commerce</title>
 </head>
 <body>
+
+    <ul>
+        <h3>Articoli nel carrello:</h3>
+        <?php
+        foreach($cart->items_list as $product){
+        ?>
+        <li>
+            <b><?php
+            echo $product['item']->name;
+            ?></b><br>
+            Quantità: 
+            <?php
+            echo $product['quantity'];
+            ?><br>
+            Prezzo: 
+            <?php
+            echo $product['item']->price;
+            ?>€
+
+        </li>
+        <?php
+        }
+        ?>
+    </ul>
 
     <p>Numero articoli: <?= $cart->total_items ?></p>
 

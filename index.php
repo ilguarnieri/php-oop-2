@@ -3,10 +3,14 @@
 require_once __DIR__.'/models/Product.php';
 require_once __DIR__.'/models/Cart.php';
 require_once __DIR__.'/models/User.php';
+require_once __DIR__.'/models/PayCard.php';
 
 $cart = new Cart();
 
 $guest = new User('Marco', 'Rossi', 26, 'marcorossi@gmail.com', 'Via Dante30, Milano');
+$card = new PayCard(4023601294560374, 'Marco Rossi', '15/2025', 547);
+
+$guest->addPayment($card);
 
 
 $product1 = new Product(
@@ -38,10 +42,13 @@ $product2->addCategory('alimentazione');
 
 
 
+var_dump($guest);
+var_dump($card);
+
+
 
 
 $cart->addItem($product2);
-
 $cart->addItem($product1, 4);
 
 
@@ -53,7 +60,7 @@ $cart->removeItem($product1, 3);
 var_dump($cart);
 
 
-var_dump($guest);
+
 
 
 

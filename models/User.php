@@ -25,8 +25,11 @@ class User {
 
     public function addPayment($card){
 
+        //controllo se la card è già presente
 
+        //scadenza
 
+        $this->paymentMethods[] = $card;
     }
 
     public function getSale(){

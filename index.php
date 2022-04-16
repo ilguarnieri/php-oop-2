@@ -32,17 +32,20 @@ $product2->addCategory('alimentazione');
 
 
 
-
-
-
 $cart->addItem($product2);
+$cart->addItem($product2,3);
 
-$cart->addItem($product1);
-$cart->addItem($product1);
-$cart->addItem($product1);
-$cart->addItem($product1);
+$cart->addItem($product1, 4);
 
-$cart->removeItem($product1);
+
+
+
+$cart->removeItem($product1, 6);
+
+
+
+
+
 
 
 

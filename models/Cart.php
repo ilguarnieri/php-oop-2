@@ -41,23 +41,38 @@ class Cart {
             ];
         }
 
-        $this->total_items++;
-        $this->total_price += $product->price;    
+        $this->total_items = $this->total_items + $quantity;
+        $this->total_price += ($product->price * $quantity);    
     }
 
     //rimuovi tutte le quantità di un prodotto
-    public function removeItem($product){
+    public function removeItem($product, $quantity = 1){
+
         foreach($this->items_list as $key => $value){
 
             $item = $value['item'];
-            $quantity = $value['quantity'];
 
+            //corrispodenza id prodotto da rimuovere
             if($product->id === $item->id){
 
-                unset($this->items_list[$key]);
+                //se il numero di prodotti da rimuovere supera quello presente nel carrello
+                if($quantity > $this->items_list[$key]['quantity']){
+    
+                    $quantity = $this->items_list[$key]['quantity'];
+                }
+                
+                //se presente un solo prodotto verrà eliminato altrimenti sarà decrementata solo la quantità
+                if($value['quantity'] === 1){
+                    
+                    unset($this->items_list[$key]);
+                }else{
 
+                    $this->items_list[$key]['quantity'] -= $quantity;
+                }
+
+                //ricalcolo dei totali
                 $this->total_items = $this->total_items - $quantity;
-                $this->total_price -= ($product->price * $quantity);
+                $this->total_price -= ($product->price * $quantity);                
             }
         }
     }

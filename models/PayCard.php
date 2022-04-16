@@ -7,7 +7,7 @@ class PayCard {
     public $validDate;
     public $cvv;
 
-    public function __construct(int $_number, string $_owner, $_validDate, int $_cvv)
+    public function __construct($_number, string $_owner, $_validDate, int $_cvv)
     {
         $this->number = $_number;
         $this->owner = $_owner;

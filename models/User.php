@@ -37,6 +37,8 @@ class User {
     }
 
     public function setSale($sale){
-        $this->sale = $sale;
+        if(is_numeric($sale) && $sale > 0){
+            $this->sale = $sale;
+        }
     }
 }

@@ -4,13 +4,18 @@ require_once __DIR__.'/models/Product.php';
 require_once __DIR__.'/models/Cart.php';
 require_once __DIR__.'/models/User.php';
 require_once __DIR__.'/models/PayCard.php';
+require_once __DIR__.'/models/RegisteredUser.php';
 
 $cart = new Cart();
 
 $guest = new User('Marco', 'Rossi', 26, 'marcorossi@gmail.com', 'Via Dante30, Milano');
-$card = new PayCard(4023601294560374, 'Marco Rossi', '15/2025', 547);
+$guest_card = new PayCard(4023601294560374, 'Marco Rossi', '15/2025', 547);
+$guest->addPayment($guest_card);
 
-$guest->addPayment($card);
+
+$user = new RegisteredUser('Angelo', 'Guarnieri', 30, 'guarnieri@gmail.com', 'Via Aligheri 43, Locorotondo', 'ilguarnieri', 'Boolean91');
+$user_card = new PayCard(5333007690032290, 'Angelo Guarnieri', '02/2024', 879);
+$user->addPayment($user_card);
 
 
 $product1 = new Product(
@@ -43,7 +48,7 @@ $product2->addCategory('alimentazione');
 
 
 var_dump($guest);
-var_dump($card);
+var_dump($user);
 
 
 
